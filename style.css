@@ -1,0 +1,89 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+
+@font-face {
+  font-family: mainFont;
+  src: url('./assets/fontes/ANODETONOONE.TTF');
+}
+
+h1 {
+  font-family: mainFont;
+  color: #603A03;
+}
+
+body{
+  background-color: #228B22;
+}
+
+.container{
+  width: 950px;
+  height: auto;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fundo{
+  width: 950px;
+  height: 630px;
+  background-image: url('./assets/imgs/fundo_game.jpg');
+  border-color: #ffffff;
+  border-style: solid;
+}
+
+.start{
+  font-family: sans-serif;
+  width: 350px;
+  height: 200px;
+  background-color: rgb(196, 195, 195);
+  margin: 100px auto 0 auto;
+  padding: 10px;
+  text-align: center;
+  border: solid 1px #000;
+  font-size: 18px;
+}
+
+.start p{
+  margin-top: 10px;
+}
+
+#player{
+  width: 256px;
+  height: 66px;
+  position: absolute;
+  left: 8px;
+  top: 179px;
+  background-image: url('./assets/imgs/apache.png');
+}
+
+#enemy1 {
+  width: 256px;
+  height: 66px;
+  position: absolute;
+  left: 689px;
+  top: 253px;
+  background-image: url('./assets/imgs/inimigo1.png');
+}
+
+#enemy2 {
+  width: 165px;
+  height: 70px;
+  position: absolute;
+  left: 775px;
+  top: 447px;
+  background-image: url('./assets/imgs/inimigo2.png');
+}
+
+#partner{
+  width: 44px;
+  height: 51px;
+  position: absolute;
+  left: 10px;
+  top: 464px;
+  background-image: url('./assets/imgs/amigo.png');
+}
