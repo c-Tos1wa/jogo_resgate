@@ -5,7 +5,7 @@ function start() {
   $(".fundo").append("<div id='enemy1' class='anima2'></div>");
   $(".fundo").append("<div id='enemy2'></div>");
   $(".fundo").append("<div id='partner' class='anima3'></div>");
-  
+
   var game = {}
   var key = {
     upArrow: 38,
@@ -15,14 +15,13 @@ function start() {
 
   game.pressed = [];
 
-  $(document).keydown(function(event){
+  $(document).keydown(function (event) {
     game.pressed[event.which] = true;
   });
-  $(document).keyup(function(event){
+  $(document).keyup(function (event) {
     game.pressed[event.which] = false;
   });
 
-  //faz a variável entrar em um looping a cada 50 ms;
   game.timer = setInterval(loop, 50);
 
 
@@ -32,13 +31,22 @@ function start() {
     movePlayer();
   }
 
-  //move a imagem de fundo de acordo com o setInterval
-  function move(){
+  function move() {
     left = parseInt($('.fundo').css('background-position'));
-    $('.fundo').css('background-position', left-1);
+    $('.fundo').css('background-position', left - 1);
   }
-  
-  function movePlayer(){
-    
+
+  function movePlayer() {
+    if (game.pressed[key.upArrow]) {
+      var above = parseInt($('#player').css("top"));
+      $("#player").css("top", above - 10);
+    }
+    if (game.pressed[key.downArrow]) {
+      var above = parseInt($('#player').css('top'));
+      $('#player').css("top", above + 10);
+    }
+    if (game.pressed[key.D]) {
+      //function
+    }
   }
 }
