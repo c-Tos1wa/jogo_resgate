@@ -13,7 +13,8 @@ function start() {
     D: 68,
   }
   var speed = 8;
-  var vertical = parseInt(Math.random()*334);
+  var vertical = parseInt(Math.random() * 334);
+  var shooting = true;
 
   game.pressed = [];
 
@@ -45,8 +46,8 @@ function start() {
       var above = parseInt($('#player').css("top"));
       $("#player").css("top", above - 10);
 
-      if ( above<=0 ) {
-        $("#player").css("top", above+10);
+      if (above <= 0) {
+        $("#player").css("top", above + 10);
       }
     }
 
@@ -54,42 +55,70 @@ function start() {
       var above = parseInt($('#player').css('top'));
       $('#player').css("top", above + 10);
 
-      if(above>=434) {
-        $("#player").css("top", above-10);
+      if (above >= 434) {
+        $("#player").css("top", above - 10);
       }
     }
     if (game.pressed[key.D]) {
-      //function
+      toShoot();
     }
   }
 
-  function moveEnemy1(){
+  function moveEnemy1() {
     horizontal = parseInt($("#enemy1").css("left"));
-    $("#enemy1").css("left", horizontal-speed);
+    $("#enemy1").css("left", horizontal - speed);
     $("#enemy1").css("top", vertical);
 
-    if (horizontal<=0) {
-      vertical = parseInt(Math.random()*334);
+    if (horizontal <= 0) {
+      vertical = parseInt(Math.random() * 334);
       $("#enemy1").css("left", 694);
       $("#enemy1").css("top", vertical);
     }
   }
 
-  function moveEnemy2(){
+  function moveEnemy2() {
     x = parseInt($("#enemy2").css("left"));
-    $("#enemy2").css("left", x-5);
+    $("#enemy2").css("left", x - 5);
 
-    if(x<=0){
+    if (x <= 0) {
       $("#enemy2").css("left", 775);
     }
   }
 
-  function movePartner(){
+  function movePartner() {
     axis = parseInt($("#partner").css("left"));
-    $("#partner").css("left", axis+1);
+    $("#partner").css("left", axis + 1);
 
-    if(axis>906) {
-      $("#partner").css("left",0);
+    if (axis > 906) {
+      $("#partner").css("left", 0);
+    }
+  }
+
+  function toShoot() {
+    if (shooting == true) {
+      shooting = false;
+
+      above = parseInt($("#player").css("top"))
+      x = parseInt($("#player").css("left"))
+      shootInX = x + 190;
+      shootTop = above + 37;
+      $(".fundo").append("<div class='disparo'></div>")
+      $(".disparo").css("top", shootTop);
+      $(".disparo").css("left", shootInX);
+
+      var timeShoot = window.setInterval(toTarget, 30);
+    }
+
+    function toTarget() {
+      position = parseInt($(".disparo").css('left'))
+      $('.disparo').css('left', position + 15);
+
+      if (position > 900) {
+        window.clearInterval(timeShoot);
+        timeShoot = null;
+        $('.disparo').remove();
+        shooting = true;
+      }
     }
   }
 
