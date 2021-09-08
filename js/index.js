@@ -164,6 +164,23 @@ function start() {
       $("#enemy1").css("left", 694);
       $("#enemy1").css("top", position);
     }
+
+    var hit4 = ($(".disparo").collision($("#enemy2")));
+
+    if (hit4.length > 0){
+      enemy2X = parseInt($("#enemy2").css("left"));
+      enemy2Y = parseInt($("#enemy2").css('top'));
+
+      explosion2(enemy2X, enemy2Y);
+      $(".disparo").css('left', 950);
+      repositionEnemy2();
+    }
+
+    var hit5 = ($("#player").collision($("#partner")));
+    if (hit5.length > 0) {
+      repositionPartner();
+      $('#partner').remove();
+    }
   }
 
   function explosion1(){
@@ -187,5 +204,7 @@ function start() {
     }
     
   }
+
+  
 
 }
