@@ -12,6 +12,8 @@ function start() {
     downArrow: 40,
     D: 68,
   }
+  var speed = 10;
+  var vertical = parseInt(Math.random()*334);
 
   game.pressed = [];
 
@@ -27,8 +29,8 @@ function start() {
 
   function loop() {
     move();
-
     movePlayer();
+    moveEnemy1();
   }
 
   function move() {
@@ -58,4 +60,18 @@ function start() {
       //function
     }
   }
+
+  function moveEnemy1(){
+    horizontal = parseInt($("#enemy1").css("left"));
+    $("#enemy1").css("left", horizontal-speed);
+    $("#enemy1").css("top", vertical);
+
+    if (horizontal<=0) {
+      vertical = parseInt(Math.random()*334);
+      $("#enemy1").css("left", 694);
+      $("#enemy1").css("top", vertical);
+    }
+  }
+
+
 }
