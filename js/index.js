@@ -15,6 +15,7 @@ function start() {
   var speed = 8;
   var vertical = parseInt(Math.random() * 334);
   var shooting = true;
+  var end = false;
 
   game.pressed = [];
 
@@ -133,6 +134,31 @@ function start() {
       enemy1X = parseInt($("#enemy1").css("left"));
       enemy1Y = parseInt($("#enemy1").css('top'));
       explosion1(enemy1X, enemy1Y);
+
+      position = parseInt(Math.random()*334);
+      $("#enemy1").css("left", 694);
+      $("#enemy1").css("top", position);
+    }
+
+    var hit2 = ($("#player").collision($("#enemy2")));
+
+    if(hit2.length>0){
+      enemy2X = parseInt($("#enemy2").css("left"));
+      enemy2Y = parseInt($("#enemy2").css('top'));
+      explosion1(enemy2X, enemy2Y);
+
+      $("#enemy2").remove();
+
+      repositionEnemy2();
+    }
+
+    var hit3 = ($(".disparo").collision($("#enemy1")));
+
+    if(hit3.length>0){
+      enemy1X = parseInt($("#enemy1").css("left"));
+      enemy1Y = parseInt($("#enemy1").css('top'));
+      explosion1(enemy1X, enemy1Y);
+      $(".disparo").css('left', 950);
 
       position = parseInt(Math.random()*334);
       $("#enemy1").css("left", 694);
