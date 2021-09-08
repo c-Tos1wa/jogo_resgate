@@ -34,6 +34,7 @@ function start() {
     moveEnemy1();
     moveEnemy2();
     movePartner();
+    collision();
   }
 
   function move() {
@@ -120,6 +121,45 @@ function start() {
         shooting = true;
       }
     }
+  }
+
+  function collision(){
+    var hit = ($("#player").collision($("#enemy1")));
+
+    /*se houver colisão, o enemy1 será reposicionado no eixo x, a direita
+    no eixo y, randomicamente.*/
+    if(hit.length>0){
+      
+      enemy1X = parseInt($("#enemy1").css("left"));
+      enemy1Y = parseInt($("#enemy1").css('top'));
+      explosion1(enemy1X, enemy1Y);
+
+      position = parseInt(Math.random()*334);
+      $("#enemy1").css("left", 694);
+      $("#enemy1").css("top", position);
+    }
+  }
+
+  function explosion1(){
+    $(".fundo").append("<div class='explosion1'></div>");
+    $(".explosion1").css("background-image", "url('../assets/imgs/explosao.png')");
+
+    var div = $(".explosion1");
+    div.css('top', enemy1Y);
+    div.css('left', enemy1X);
+    div.animate({ 
+      width: 200,
+      opacity: 0
+    }, 'slow');
+
+    var timeOfExplosion = window.setInterval(removeAnimation, 1000);
+
+    function removeAnimation(){
+      div.remove();
+      window.clearInterval(timeOfExplosion);
+      timeOfExplosion = null;
+    }
+    
   }
 
 }
