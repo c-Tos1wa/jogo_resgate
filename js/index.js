@@ -31,6 +31,7 @@ function start() {
     move();
     movePlayer();
     moveEnemy1();
+    moveEnemy2();
   }
 
   function move() {
@@ -70,6 +71,15 @@ function start() {
       vertical = parseInt(Math.random()*334);
       $("#enemy1").css("left", 694);
       $("#enemy1").css("top", vertical);
+    }
+  }
+
+  function moveEnemy2(){
+    x = parseInt($("#enemy2").css("left"));
+    $("#enemy2").css("left", x-5);
+
+    if(x<=0){
+      $("#enemy2").css("left", 775);
     }
   }
 
