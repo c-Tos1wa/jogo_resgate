@@ -12,7 +12,7 @@ function start() {
     downArrow: 40,
     D: 68,
   }
-  var speed = 10;
+  var speed = 8;
   var vertical = parseInt(Math.random()*334);
 
   game.pressed = [];
@@ -32,6 +32,7 @@ function start() {
     movePlayer();
     moveEnemy1();
     moveEnemy2();
+    movePartner();
   }
 
   function move() {
@@ -83,5 +84,13 @@ function start() {
     }
   }
 
+  function movePartner(){
+    axis = parseInt($("#partner").css("left"));
+    $("#partner").css("left", axis+1);
+
+    if(axis>906) {
+      $("#partner").css("left",0);
+    }
+  }
 
 }
