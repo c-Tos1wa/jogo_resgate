@@ -40,10 +40,19 @@ function start() {
     if (game.pressed[key.upArrow]) {
       var above = parseInt($('#player').css("top"));
       $("#player").css("top", above - 10);
+
+      if ( above<=0 ) {
+        $("#player").css("top", above+10);
+      }
     }
+
     if (game.pressed[key.downArrow]) {
       var above = parseInt($('#player').css('top'));
       $('#player').css("top", above + 10);
+
+      if(above>=434) {
+        $("#player").css("top", above-10);
+      }
     }
     if (game.pressed[key.D]) {
       //function
