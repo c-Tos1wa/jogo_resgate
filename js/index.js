@@ -183,7 +183,16 @@ function start() {
       $('#partner').remove();
     }
 
-    var hit6 = ($("#inimigo2").collision($("#partner")));
+    var hit6 = ($("#enemy2").collision($("#partner")));
+    if(hit6.length > 0){
+      partnerX = parseInt($("#partner").css("left"));
+      partnerY = parseInt($("#partner").css("top"));
+
+      explosion3(partnerX, partnerY);
+      $("#partner").remove();
+
+      repositionPartner();
+    }
   }
 
   function explosion1(){
@@ -227,21 +236,34 @@ function start() {
       timeEffect = null;
     }
   }
+
+  function explosion3(partnerX, partnerY){
+    $(".fundo").append("<div id='explosion3' class='anima4'></div>")
+    $("#explosion3").css("top", partnerY);
+    $("#explosion3").css("left", partnerX);
+
+    var stopExplosion = window.setInterval(resetExplosion, 1000);
+
+    function resetExplosion(){
+      $('#explosion3').remove();
+      window.clearInterval(stopExplosion);
+      stopExplosion = null;
+    }
+  }
   
   function repositionEnemy2(){
     var timeOfHit4 = window.setInterval(reposition, 5000)
-
+    
     function reposition(){
       window.clearInterval(timeOfHit4);
       timeOfHit4 = null;
-
+      
       if (end == false){
         $(".fundo").append("<div id='enemy2'></div>")
       }
     }
-
   }
-
+    
 
   function repositionPartner(){
     var time = window.setInterval(reposition, 6000);
@@ -255,9 +277,6 @@ function start() {
       }
     }
   }
-
-
-
 
   
 
