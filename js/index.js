@@ -129,13 +129,13 @@ function start() {
 
     /*se houver colisão, o enemy1 será reposicionado no eixo x, a direita
     no eixo y, randomicamente.*/
-    if(hit.length>0){
+    if(hit.length > 0){
       
       enemy1X = parseInt($("#enemy1").css("left"));
       enemy1Y = parseInt($("#enemy1").css('top'));
       explosion1(enemy1X, enemy1Y);
 
-      position = parseInt(Math.random()*334);
+      position = parseInt(Math.random() * 334);
       $("#enemy1").css("left", 694);
       $("#enemy1").css("top", position);
     }
@@ -154,13 +154,13 @@ function start() {
 
     var hit3 = ($(".disparo").collision($("#enemy1")));
 
-    if(hit3.length>0){
+    if(hit3.length > 0){
       enemy1X = parseInt($("#enemy1").css("left"));
       enemy1Y = parseInt($("#enemy1").css('top'));
       explosion1(enemy1X, enemy1Y);
       $(".disparo").css('left', 950);
 
-      position = parseInt(Math.random()*334);
+      position = parseInt(Math.random() * 334);
       $("#enemy1").css("left", 694);
       $("#enemy1").css("top", position);
     }
@@ -173,6 +173,7 @@ function start() {
 
       explosion2(enemy2X, enemy2Y);
       $(".disparo").css('left', 950);
+
       repositionEnemy2();
     }
 
@@ -181,6 +182,8 @@ function start() {
       repositionPartner();
       $('#partner').remove();
     }
+
+    var hit6 = ($("#inimigo2").collision($("#partner")));
   }
 
   function explosion1(){
@@ -202,8 +205,59 @@ function start() {
       window.clearInterval(timeOfExplosion);
       timeOfExplosion = null;
     }
-    
   }
+  
+  function explosion2(enemy2X, enemy2Y){
+    $(".fundo").append("<div id='explosion2'></div>")
+    $(".explosion2").css("background-image", "url('../assets/imgs/explosao.png')")
+    
+    var effect = $('.explosion2');
+    effect.css('top', enemy2Y);
+    effect.css('left', enemy2X);
+    effect.animate({
+      width: 200,
+      opacity: 0
+    }, 'slow');
+
+    var timeEffect = window.setInterval(removeExplosion2, 1000);
+
+    function removeExplosion2(){
+      effect.remove();
+      window.clearInterval(timeEffect);
+      timeEffect = null;
+    }
+  }
+  
+  function repositionEnemy2(){
+    var timeOfHit4 = window.setInterval(reposition, 5000)
+
+    function reposition(){
+      window.clearInterval(timeOfHit4);
+      timeOfHit4 = null;
+
+      if (end == false){
+        $(".fundo").append("<div id='enemy2'></div>")
+      }
+    }
+
+  }
+
+
+  function repositionPartner(){
+    var time = window.setInterval(reposition, 6000);
+
+    function reposition(){
+      window.clearInterval(time);
+      time = null;
+
+      if(end == false){
+        $('.fundo').append("<div id='partner' class='anima3'></div>");
+      }
+    }
+  }
+
+
+
 
   
 
