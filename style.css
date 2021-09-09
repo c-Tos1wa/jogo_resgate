@@ -16,6 +16,11 @@ h1 {
   color: #603A03;
 }
 
+h2{
+  font-family: mainFont;
+  color: #ffffff;
+}
+
 body{
   background-color: #228B22;
 }
@@ -37,7 +42,7 @@ body{
 }
 
 .start{
-  font-family: sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 350px;
   height: 200px;
   background-color: rgb(196, 195, 195);
@@ -114,3 +119,12 @@ body{
   height: 51px;
   position: absolute;
 }
+
+.placar{
+  width: 450px;
+  height: 50px;
+  position: absolute;
+  left: 5px;
+  top: 590px;
+}
+
