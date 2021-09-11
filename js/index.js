@@ -26,6 +26,12 @@ function start() {
   var lost = 0;
   var gameBoard = 3;
 
+  var explosion = document.getElementById('explosion');
+  var gameOver = document.getElementById('gameOver');
+  var dead = document.getElementById('dead');
+  var rescued = document.getElementById('rescued');
+  var shot = document.getElementById('shot');
+
   game.pressed = [];
 
   $(document).keydown(function (event) {
@@ -110,6 +116,7 @@ function start() {
   
   function toShoot() {
     if (shooting == true) {
+      shot.play();
       shooting = false;
       
       above = parseInt($("#player").css("top"))
@@ -196,6 +203,7 @@ function start() {
     
     var hit5 = ($("#player").collision($("#partner")));
     if (hit5.length > 0) {
+      rescued.play();
       safe++;
       repositionPartner();
       $('#partner').remove();
@@ -215,6 +223,7 @@ function start() {
   }
   
   function explosion1(){
+    explosion.play();
     $(".fundo").append("<div class='explosion1'></div>");
     $(".explosion1").css("background-image", "url('../assets/imgs/explosao.png')");
     
@@ -236,6 +245,7 @@ function start() {
   }
   
   function explosion2(enemy2X, enemy2Y){
+    explosion.play();
     $(".fundo").append("<div class='explosion2'></div>")
     $(".explosion2").css("background-image", "url('../assets/imgs/explosao.png')")
     
@@ -257,6 +267,7 @@ function start() {
   }
   
   function explosion3(partnerX, partnerY){
+    dead.play();
     $(".fundo").append("<div id='explosion3' class='anima4'></div>")
     $("#explosion3").css("top", partnerY);
     $("#explosion3").css("left", partnerX);
