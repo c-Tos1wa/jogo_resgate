@@ -19,6 +19,7 @@ h1 {
 h2{
   font-family: mainFont;
   color: #ffffff;
+  font-size: 20px;
 }
 
 body{
@@ -120,11 +121,19 @@ body{
   position: absolute;
 }
 
-.placar{
-  width: 450px;
+.scoreboard{
+  width: 440px;
   height: 50px;
   position: absolute;
   left: 5px;
   top: 590px;
+}
+
+.gameBoard{
+  width: 140px;
+  height: 38px;
+  position: absolute;
+  left: 750px;
+  top: 7px;
 }
 

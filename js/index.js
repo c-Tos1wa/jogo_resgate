@@ -6,6 +6,9 @@ function start() {
   $(".fundo").append("<div id='enemy2'></div>");
   $(".fundo").append("<div id='partner' class='anima3'></div>");
   $(".fundo").append("<div class='scoreboard'></div>");
+  $(".fundo").append("<div class='gameBoard'></div>");
+
+
 
   var game = {}
   var key = {
@@ -21,6 +24,7 @@ function start() {
   var total = 0;
   var safe = 0;
   var lost = 0;
+  var gameBoard = 3;
 
   game.pressed = [];
 
@@ -42,6 +46,7 @@ function start() {
     movePartner();
     collision();
     score();
+    power();
   }
 
   
@@ -137,7 +142,7 @@ function start() {
     /*se houver colisão, o enemy1 será reposicionado no eixo x, a direita
     no eixo y, randomicamente.*/
     if(hit.length > 0){
-      
+      gameBoard--;
       enemy1X = parseInt($("#enemy1").css("left"));
       enemy1Y = parseInt($("#enemy1").css('top'));
       explosion1(enemy1X, enemy1Y);
@@ -150,6 +155,7 @@ function start() {
     var hit2 = ($("#player").collision($("#enemy2")));
     
     if(hit2.length>0){
+      gameBoard--;
       enemy2X = parseInt($("#enemy2").css("left"));
       enemy2Y = parseInt($("#enemy2").css('top'));
       explosion1(enemy2X, enemy2Y);
@@ -228,7 +234,7 @@ function start() {
   }
   
   function explosion2(enemy2X, enemy2Y){
-    $(".fundo").append("<div id='explosion2'></div>")
+    $(".fundo").append("<div class='explosion2'></div>")
     $(".explosion2").css("background-image", "url('../assets/imgs/explosao.png')")
     
     var effect = $('.explosion2');
@@ -290,8 +296,28 @@ function start() {
   }
   
   function score(){
-    $(".scoreboard").html("<h2> Pontos: " + total + " Salvos: " + safe + " Perdidos: " + lost + "</h2>");
+    $(".scoreboard").html("<h2> Pontos:  " + total + " Salvos: " + safe + " Perdidos: " + lost + "</h2>");
   }
   
+  function power(){
+    switch(gameBoard) {
+      case 3:
+        $(".gameBoard").css("background-image", "url('../assets/imgs/energia3.png')");
+        break;
+
+      case 2:
+        $(".gameBoard").css("background-image", "url('../assets/imgs/energia2.png')");
+        break;
+
+      case 1: 
+        $(".gameBoard").css("background-image", "url('../assets/imgs/energia1.png')");
+        break;
+
+      case 0:
+        $(".gameBoard").css("background-image", "url('../assets/imgs/energia0.png')");
+        //function
+        break;
+    }
+  }
   
 }
