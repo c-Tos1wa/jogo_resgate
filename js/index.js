@@ -169,6 +169,7 @@ function start() {
     
     if(hit3.length > 0){
       total = total + 100;
+      speed++;
       enemy1X = parseInt($("#enemy1").css("left"));
       enemy1Y = parseInt($("#enemy1").css('top'));
       explosion1(enemy1X, enemy1Y);
@@ -183,6 +184,7 @@ function start() {
     
     if (hit4.length > 0){
       total = total + 50;
+      speed = speed + 0.5;
       enemy2X = parseInt($("#enemy2").css("left"));
       enemy2Y = parseInt($("#enemy2").css('top'));
       
