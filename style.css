@@ -22,6 +22,12 @@ h2{
   font-size: 20px;
 }
 
+h3{
+  font-family: mainFont;
+  color: green;
+  font-size: 20px;
+}
+
 body{
   background-color: #228B22;
 }
@@ -42,8 +48,8 @@ body{
   border-style: solid;
 }
 
-.start{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+.start {
+  font-family: 'Times New Roman', Times, serif;
   width: 350px;
   height: 200px;
   background-color: rgb(196, 195, 195);
@@ -56,7 +62,7 @@ body{
 }
 
 .start p {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 
@@ -137,3 +143,22 @@ body{
   top: 7px;
 }
 
+.endGame{
+  width: 350px;
+  height: 200px;
+  background-color: rgb(196, 195, 195);
+  margin: 100px auto 0 auto;
+  padding: 10px;
+  text-align: center;
+  border: solid 1px #000;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.endGame h1{
+  color: #DC143C;
+}
+
+.endGame p{
+  margin: 30px;
+}

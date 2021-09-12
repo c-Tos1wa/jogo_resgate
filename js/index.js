@@ -27,7 +27,7 @@ function start() {
   var gameBoard = 3;
 
   var explosion = document.getElementById('explosion');
-  var gameOver = document.getElementById('gameOver');
+  var gameOverSound = document.getElementById('gameOver');
   var dead = document.getElementById('dead');
   var rescued = document.getElementById('rescued');
   var shot = document.getElementById('shot');
@@ -146,8 +146,6 @@ function start() {
   function collision(){
     var hit = ($("#player").collision($("#enemy1")));
     
-    /*se houver colisão, o enemy1 será reposicionado no eixo x, a direita
-    no eixo y, randomicamente.*/
     if(hit.length > 0){
       gameBoard--;
       enemy1X = parseInt($("#enemy1").css("left"));
@@ -328,9 +326,26 @@ function start() {
 
       case 0:
         $(".gameBoard").css("background-image", "url('../assets/imgs/energia0.png')");
-        //function
+        gameOver();
         break;
     }
   }
+
+  function gameOver(){
+    end = true;
+    gameOverSound.play();
+
+    window.clearInterval(game.timer);
+    game.timer = null;
+
+    $("#player").remove();
+    $("#enemy1").remove();
+    $("#enemy2").remove();
+    $("#partner").remove();
+    
+    $('.fundo').append("<div class='endGame'></div>");
+
+    $('.endGame').html("<h1> Fim do Jogo </h1><p>Sua pontuação foi: " + total + "</p>" + "<div class='restart' onClick=restart()><h3>Jogar Novamente</h3></div>");
+  } 
   
 }
