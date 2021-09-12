@@ -328,24 +328,35 @@ function start() {
         $(".gameBoard").css("background-image", "url('../assets/imgs/energia0.png')");
         gameOver();
         break;
+      }
     }
+    
+    function gameOver(){
+      end = true;
+      gameOverSound.play();
+      
+      window.clearInterval(game.timer);
+      game.timer = null;
+      
+      $("#player").remove();
+      $("#enemy1").remove();
+      $("#enemy2").remove();
+      $("#partner").remove();
+      
+      $('.fundo').append("<div class='endGame'></div>");
+      
+      
+    	$(".endGame").html("<h1> Fim do Jogo </h1><p>Sua pontuação foi: " + total + "</p>" + "<div onClick=restartGame()><h3>Jogar Novamente</h3></div>");
+
+    } 
   }
 
-  function gameOver(){
-    end = true;
-    gameOverSound.play();
-
-    window.clearInterval(game.timer);
-    game.timer = null;
-
-    $("#player").remove();
-    $("#enemy1").remove();
-    $("#enemy2").remove();
-    $("#partner").remove();
-    
-    $('.fundo').append("<div class='endGame'></div>");
-
-    $('.endGame').html("<h1> Fim do Jogo </h1><p>Sua pontuação foi: " + total + "</p>" + "<div class='restart' onClick=restart()><h3>Jogar Novamente</h3></div>");
+  function restartGame() {
+    gameOverSound.pause();
+    $('.endGame').remove();
+    start()
   } 
+
+
   
-}
+  
